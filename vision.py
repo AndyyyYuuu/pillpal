@@ -11,15 +11,23 @@ options = vision.PoseLandmarkerOptions(
     base_options=base_options,
     output_segmentation_masks=True)
 detector = vision.PoseLandmarker.create_from_options(options)
-
+SCALE_FACTOR = 0.1
 camera = cv2.VideoCapture(0)
+width = camera.get(cv2.CAP_PROP_FRAME_WIDTH)
+height = camera.get(cv2.CAP_PROP_FRAME_HEIGHT)
+TARGET_WIDTH = int(width * SCALE_FACTOR)
+TARGET_HEIGHT = int(height * SCALE_FACTOR)
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, TARGET_WIDTH)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, TARGET_HEIGHT)
+camera.set(cv2.CAP_PROP_FPS, 15)
 
 def get_landmarks(frame: np.ndarray):
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
     return detector.detect(mp_image)
 
-def draw_specific_landmarks(frame, landmarks, landmark_indices):
+# TODO: Debug this function (issue arises after scaling)
+def draw_specific_landmarks(frame, landmarks, landmark_indices, scale_x, scale_y):
     """Draw specific landmarks on the frame"""
     if landmarks and len(landmarks) > 0:
         pose_landmarks = landmarks[0]
@@ -29,8 +37,8 @@ def draw_specific_landmarks(frame, landmarks, landmark_indices):
             if idx < len(pose_landmarks):
                 landmark = pose_landmarks[idx]
                 # Convert normalized coordinates to pixel coordinates
-                x = int(landmark.x * width)
-                y = int(landmark.y * height)
+                x = int(landmark.x * width * scale_x)
+                y = int(landmark.y * height * scale_y)
                 
                 # Draw circle for the landmark
                 cv2.circle(frame, (x, y), 8, (255, 0, 0), -1)
@@ -45,8 +53,12 @@ def dist(landmark1, landmark2):
     return np.sqrt((landmark1.x - landmark2.x)**2 + (landmark1.y - landmark2.y)**2)
 
 while True:
+    
     ret, frame = camera.read()
-    y = get_landmarks(frame)
+    original_height, original_width = frame.shape[:2]
+
+    small_frame = cv2.resize(frame, (TARGET_WIDTH, TARGET_HEIGHT))
+    y = get_landmarks(small_frame)
     if len(y.pose_landmarks) > 0:
         
         #print(type(get_landmarks(frame).pose_landmarks[0][9]))
@@ -57,8 +69,12 @@ while True:
             print("Close")
         else:
             print("Far")
-        frame = draw_specific_landmarks(frame, y.pose_landmarks, [9, 10, 19, 20])
-    cv2.imshow("frame", frame)
+
+        scale_x = original_width / TARGET_WIDTH
+        scale_y = original_height / TARGET_HEIGHT
+
+        frame = draw_specific_landmarks(frame, y.pose_landmarks, [9, 10, 19, 20], scale_x, scale_y)
+    cv2.imshow("frame", small_frame)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
