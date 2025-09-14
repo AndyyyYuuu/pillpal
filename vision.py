@@ -73,7 +73,7 @@ while True:
         scale_x = original_width / TARGET_WIDTH
         scale_y = original_height / TARGET_HEIGHT
 
-        frame = draw_specific_landmarks(frame, y.pose_landmarks, [9, 10, 19, 20], scale_x, scale_y)
+        small_frame = draw_specific_landmarks(small_frame, y.pose_landmarks, [9, 10, 19, 20], scale_x, scale_y)
     cv2.imshow("frame", small_frame)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
