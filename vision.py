@@ -52,8 +52,7 @@ def draw_specific_landmarks(frame, landmarks, landmark_indices, scale_x, scale_y
 def dist(landmark1, landmark2):
     return np.sqrt((landmark1.x - landmark2.x)**2 + (landmark1.y - landmark2.y)**2)
 
-while True:
-    
+def vision(display=False):
     ret, frame = camera.read()
     original_height, original_width = frame.shape[:2]
 
@@ -61,23 +60,29 @@ while True:
     y = get_landmarks(small_frame)
     if len(y.pose_landmarks) > 0:
         
-        #print(type(get_landmarks(frame).pose_landmarks[0][9]))
-        #print(get_landmarks(frame).pose_landmarks[0][19])
+        scale_x = original_width / TARGET_WIDTH
+        scale_y = original_height / TARGET_HEIGHT
+        if display:
+            small_frame = draw_specific_landmarks(small_frame, y.pose_landmarks, [9, 10, 19, 20], scale_x, scale_y)
+            cv2.imshow("frame", small_frame)
         THRESHOLD = 0.1
         if dist(y.pose_landmarks[0][9], y.pose_landmarks[0][19]) < THRESHOLD\
         or dist(y.pose_landmarks[0][10], y.pose_landmarks[0][20]) < THRESHOLD:
-            print("Close")
+            return True
         else:
-            print("Far")
+            return False
+    if display:
+        cv2.imshow("frame", small_frame)
+    return False
 
-        scale_x = original_width / TARGET_WIDTH
-        scale_y = original_height / TARGET_HEIGHT
-
-        small_frame = draw_specific_landmarks(small_frame, y.pose_landmarks, [9, 10, 19, 20], scale_x, scale_y)
-    cv2.imshow("frame", small_frame)
+'''
+while True:
+    print(vision())
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
+
 camera.release()
 cv2.destroyAllWindows()
+'''
 
