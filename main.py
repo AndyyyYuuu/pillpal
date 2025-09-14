@@ -38,6 +38,15 @@ def wait_for_ir_high_stable(d: Dispenser, timeout_s: int) -> bool:
         time.sleep(IR_POLL_INTERVAL)
     return False
 
+def wait_for_hand_to_mouth(timeout_s: int) -> bool:
+    deadline = time.time() + timeout_s
+    while time.time() < deadline:
+        is_hand_to_mouth = vision()
+        if is_hand_to_mouth:
+            print("✅ Hand to mouth confirmed.")
+            return True
+    return False
+
 def main():
     d = Dispenser()
     try:
@@ -47,7 +56,7 @@ def main():
 
         print(f"Waiting up to {FIRST_WINDOW}s for pickup (IR HIGH)...")
         if not wait_for_ir_high_stable(d, FIRST_WINDOW):
-            # Not picked up → remind, then keep watching
+            # Not picked up -> remind, then keep watching
             now = datetime.now().strftime("%H:%M")
             print("⏰ Not picked up — sending reminder...")
             remind_patient(now, MED_NAME)
@@ -57,37 +66,29 @@ def main():
                 print("⚠️ Still not picked up after reminder window.")
                 return  # or escalate if you have that hook
 
-        # Picked up → verify hand-to-mouth with vision
+        # Picked up: verify hand-to-mouth with vision
         print("🎥 Starting vision check for hand-to-mouth...")
-        vision.start_camera()  # safe to call even if already started
-
-        eaten = False
-        try:
-            eaten = vision.wait_for_hand_to_mouth(timeout_s=HAND_GESTURE_TIMEOUT)
-        finally:
-            vision.stop_camera()
+        wait_for_hand_to_mouth(d, HAND_GESTURE_TIMEOUT)
+        eaten = wait_for_hand_to_mouth(HAND_GESTURE_TIMEOUT)
 
         if eaten:
             print("🎉 Vision: eaten confirmed. Cycle complete.")
             return
 
-        # No gesture within 1 minute → remind via VAPI
+        # No gesture within 1 minute -> remind via VAPI
         now = datetime.now().strftime("%H:%M")
         print("📞 No hand-to-mouth detected within 1 min — reminding patient via VAPI.")
         remind_patient(now, MED_NAME)
 
-        # Optional: watch a bit more in case of late gesture
+        # Watch a bit more in case of late gesture
         print(f"Watching another {POST_REMINDER_WINDOW}s for late gesture...")
-        vision.start_camera()
-        try:
-            if vision.wait_for_hand_to_mouth(timeout_s=POST_REMINDER_WINDOW):
-                print("✅ Late eaten gesture detected — done.")
-                return
-        finally:
-            vision.stop_camera()
+        wait_for_hand_to_mouth(POST_REMINDER_WINDOW)
+        if wait_for_hand_to_mouth(POST_REMINDER_WINDOW):
+            print("✅ Late eaten gesture detected — done.")
+            return
 
         print("⚠️ No eaten gesture detected after reminder window.")
-        # (Optional) escalate here
+        # What now?
 
     except KeyboardInterrupt:
         print("\nShutting down. Bye.")
