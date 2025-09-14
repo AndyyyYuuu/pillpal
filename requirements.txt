@@ -1,25 +1,8 @@
-# Medication Reminder System Dependencies
-
-# Telegram Bot API
-python-telegram-bot==20.7
-
-# VAPI SDK for voice calls
-vapi-python==1.0.0
-
-# Text-to-Speech for local announcements
-pyttsx3==2.90
-
-# Date and time handling (built-in, but listed for clarity)
-# datetime - built-in module
-
-# JSON handling (built-in, but listed for clarity)
-# json - built-in module
-
-# Threading support (built-in, but listed for clarity)
-# threading - built-in module
-
-# File system operations (built-in, but listed for clarity)
-# os - built-in module
-
-# Time operations (built-in, but listed for clarity)
-# time - built-in module
+python-telegram-bot
+vapi_server_sdk
+pyttsx3
+mediapipe
+opencv-python
+numpy
+pyserial
+serial
