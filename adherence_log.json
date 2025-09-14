@@ -1,0 +1,198 @@
+[
+  {
+    "timestamp": "2025-09-13T12:27:00.048417",
+    "date": "2025-09-13",
+    "time_str": "12:27",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T12:27:30.628687",
+    "date": "2025-09-13",
+    "time_str": "12:27",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T12:54:04.814360",
+    "date": "2025-09-13",
+    "time_str": "12:54",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T12:54:35.398193",
+    "date": "2025-09-13",
+    "time_str": "12:54",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T12:56:03.018202",
+    "date": "2025-09-13",
+    "time_str": "12:56",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T12:56:33.566905",
+    "date": "2025-09-13",
+    "time_str": "12:56",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T13:05:04.966058",
+    "date": "2025-09-13",
+    "time_str": "13:05",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T13:05:36.475757",
+    "date": "2025-09-13",
+    "time_str": "13:05",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T14:00:34.812232",
+    "date": "2025-09-13",
+    "time_str": "14:00",
+    "pill_name": "Multivitamin",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T14:05:34.978596",
+    "date": "2025-09-13",
+    "time_str": "14:00",
+    "pill_name": "Multivitamin",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T15:52:02.779628",
+    "date": "2025-09-13",
+    "time_str": "15:52",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T15:52:33.772598",
+    "date": "2025-09-13",
+    "time_str": "15:52",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T15:59:03.720854",
+    "date": "2025-09-13",
+    "time_str": "15:59",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T15:59:35.559457",
+    "date": "2025-09-13",
+    "time_str": "15:59",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T16:28:05.993705",
+    "date": "2025-09-13",
+    "time_str": "16:28",
+    "pill_name": "Vitamin C",
+    "status": "announced"
+  },
+  {
+    "timestamp": "2025-09-13T16:28:36.961687",
+    "date": "2025-09-13",
+    "time_str": "16:28",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T16:43:02.818082",
+    "date": "2025-09-13",
+    "time_str": "16:43",
+    "pill_name": "Vitamin C",
+    "status": "message_sent"
+  },
+  {
+    "timestamp": "2025-09-13T16:43:14.902552",
+    "date": "2025-09-13",
+    "time_str": "16:43",
+    "pill_name": "Vitamin C",
+    "status": "patient_called"
+  },
+  {
+    "timestamp": "2025-09-13T16:43:33.472924",
+    "date": "2025-09-13",
+    "time_str": "16:43",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T17:07:02.232264",
+    "date": "2025-09-13",
+    "time_str": "17:07",
+    "pill_name": "Vitamin C",
+    "status": "message_sent"
+  },
+  {
+    "timestamp": "2025-09-13T17:07:13.944798",
+    "date": "2025-09-13",
+    "time_str": "17:07",
+    "pill_name": "Vitamin C",
+    "status": "patient_called"
+  },
+  {
+    "timestamp": "2025-09-13T17:07:33.073540",
+    "date": "2025-09-13",
+    "time_str": "17:07",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T17:37:01.242238",
+    "date": "2025-09-13",
+    "time_str": "17:37",
+    "pill_name": "Vitamin C",
+    "status": "message_sent"
+  },
+  {
+    "timestamp": "2025-09-13T17:37:13.606511",
+    "date": "2025-09-13",
+    "time_str": "17:37",
+    "pill_name": "Vitamin C",
+    "status": "patient_called"
+  },
+  {
+    "timestamp": "2025-09-13T17:37:32.432350",
+    "date": "2025-09-13",
+    "time_str": "17:37",
+    "pill_name": "Vitamin C",
+    "status": "missed/escalated"
+  },
+  {
+    "timestamp": "2025-09-13T18:00:10.329636",
+    "date": "2025-09-13",
+    "time_str": "18:00",
+    "pill_name": "Multivitamin",
+    "status": "message_sent"
+  },
+  {
+    "timestamp": "2025-09-13T18:00:22.707706",
+    "date": "2025-09-13",
+    "time_str": "18:00",
+    "pill_name": "Multivitamin",
+    "status": "patient_called"
+  },
+  {
+    "timestamp": "2025-09-13T18:00:41.665215",
+    "date": "2025-09-13",
+    "time_str": "18:00",
+    "pill_name": "Multivitamin",
+    "status": "missed/escalated"
+  }
+]
